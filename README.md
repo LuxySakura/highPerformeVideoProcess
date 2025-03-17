@@ -68,6 +68,42 @@ python embedder.py "C:\Videos\movie.mp4" "C:\Subtitles\movie.srt"
 python embedder.py "C:\Videos\movie.mp4" "C:\Subtitles\movie.srt" -o "C:\Output\movie_subbed.mp4"
 ```
 
+### 3. 视频剪辑工具 (edit.py)
+
+根据指定的时间点剪辑视频，支持从视频结尾倒计时的剪辑方式。
+
+#### 特性：
+- 支持从视频结尾倒计时的剪辑方式（适合不知道视频总长度的情况）
+- 自动检测并利用NVIDIA GPU加速（如可用）
+- 高质量视频编码保持
+- 实时显示处理进度
+- 自动创建video目录存储输出文件（当指定输出文件名时）
+
+#### 使用方法：
+
+```bash
+python edit.py <视频文件路径> <距离结束的开始时间> <距离结束的结束时间> [-o <输出文件名>]
+```
+
+参数说明：
+- <视频文件路径> : 要剪辑的视频文件路径
+- <距离结束的开始时间> : 从视频结尾倒数的开始时间点（HH:MM:SS格式）
+- <距离结束的结束时间> : 从视频结尾倒数的结束时间点（HH:MM:SS格式）
+- -o, --output : （可选）输出文件名，如不指定则在原文件名后添加"_edited"
+
+示例：
+```bash
+python edit.py "C:\Videos\movie.mp4" "00:10:00" "00:05:00"
+```
+
+上面的命令会剪辑视频，保留从视频结束前10分钟到视频结束前5分钟的内容。
+
+或指定输出文件名：
+
+```bash
+python edit.py "C:\Videos\movie.mp4" "00:10:00" "00:05:00" -o "精彩片段"
+```
+
 ## 性能优化
 两个工具都会自动检测系统中是否有可用的NVIDIA GPU：
 
